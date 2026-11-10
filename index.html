@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Farheen &amp; Ashfaq · 27.11.2026</title>
+<meta name="description" content="You are warmly invited to the wedding of Farheen &amp; Ashfaq, Friday 27 November 2026, Marino Beach Hotel, Colombo.">
+<meta name="theme-color" content="#a6a88f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Farheen &amp; Ashfaq · Wedding Invitation">
+<meta property="og:description" content="Friday, 27 November 2026 · Marino Beach Hotel, Colombo. Tap to open your invitation.">
+<meta property="og:image" content="https://thanveerahmd.github.io/farheen-ashfaq/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/seal.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/env_poster.webp">
+<link rel="stylesheet" href="style.css?v=8">
+</head>
+<body class="locked">
+
+<!-- ============ THE ENVELOPE (a filmed opening) ============ -->
+<div class="gate" id="gate">
+  <div class="gate-bg" aria-hidden="true"></div>
+  <div class="stage" id="stage">
+    <video id="film" muted playsinline preload="auto" poster="assets/env_poster.webp" aria-hidden="true"></video>
+    <div class="stage-shade" aria-hidden="true"></div>
+
+    <button class="seal-hit" id="sealHit" type="button" aria-label="Break the seal to open your invitation">
+      <span class="ring"></span><span class="ring two"></span><span class="glint"></span>
+    </button>
+  </div>
+
+  <div class="gate-copy" id="gateCopy">
+    <div class="gate-top">
+      <p class="g-kicker">The wedding of</p>
+      <p class="g-names">Farheen <i>&amp;</i> Ashfaq</p>
+      <p class="g-date">27 . 11 . 2026</p>
+    </div>
+    <div class="gate-bottom">
+      <div class="plate g-label"><span class="plate-to">Dear</span><span class="plate-name" data-guest>Our Honoured Guest</span></div>
+      <p class="g-hint" id="hint"><span>Tap the seal to open</span></p>
+    </div>
+  </div>
+
+  <div class="loader" id="loader" role="status">
+    <div class="loader-seal"><img src="assets/seal.webp" alt="" width="96" height="96"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56"/><circle class="bar" id="loaderBar" cx="60" cy="60" r="56"/></svg></div>
+    <p class="loader-text">Preparing your invitation <b id="loaderPct">0%</b></p>
+  </div>
+
+  <button class="skip" id="skip" type="button">Open without the film</button>
+</div>
+
+<!-- ============ MOVING LAYERS ============ -->
+<div class="backdrop" id="backdrop" aria-hidden="true"><div class="backdrop-img"></div><div class="backdrop-veil"></div></div>
+<canvas class="petals" id="petals" aria-hidden="true"></canvas>
+
+<!-- ============ THE INVITATION ============ -->
+<main id="page" aria-hidden="true">
+
+  <section class="hero" id="top">
+    <div class="motes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="hero-in">
+      <div class="plate h-el"><span class="plate-to">Dear</span><span class="plate-name" data-guest>Our Honoured Guest</span></div>
+      <p class="hero-lead h-el">you are warmly invited to the wedding of</p>
+      <h1 class="names h-el" aria-label="Farheen and Ashfaq"><span>Farheen</span><i>&amp;</i><span>Ashfaq</span></h1>
+      <div class="when h-el">
+        <span>Friday</span>
+        <span class="when-mid"><b>27</b> November 2026</span>
+        <span>Dinner 8:00 pm</span>
+      </div>
+      <p class="hero-where h-el">The Grand Ballroom, Marino Beach Hotel, Colombo</p>
+    </div>
+    <a class="scroll-cue h-el" href="#card" aria-label="Scroll to the invitation"><span>Scroll</span><i></i></a>
+  </section>
+
+  <!-- the wording -->
+  <section class="row row-card" id="card">
+    <div class="col col-words">
+      <div class="arch reveal">
+        <div class="arch-in">
+          <p class="arabic" lang="ar" dir="rtl">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+          <p class="it">In the name of Allah, the Most Gracious, the Most Merciful</p>
+          <span class="rule" aria-hidden="true"></span>
+          <p class="caps">Dr. M.T. M. Boosary<br>&amp; Haja M. A. F. Fazna</p>
+          <p class="lead">request the honour of your presence at the wedding ceremony of their beloved daughter</p>
+          <p class="couple"><span>Farheen</span><i>with</i><span>Ashfaq</span></p>
+          <p class="caps sm">Son of Marhoom M. H. M. Rasmi<br>&amp; Fathima Rifka</p>
+          <p class="insha">In shaa Allah</p>
+        </div>
+      </div>
+      <button class="text-btn reveal" id="openCard" type="button">See the printed card</button>
+    </div>
+  </section>
+
+  <!-- the date -->
+  <section class="band" id="date">
+    <div class="band-in">
+      <p class="band-kicker reveal">Save the date</p>
+      <div class="bigdate reveal">
+        <span class="bd-side">Friday</span>
+        <span class="bd-num">27</span>
+        <span class="bd-side">November<br>2026</span>
+      </div>
+      <p class="band-time reveal">Dinner at 8:00 pm, In shaa Allah</p>
+      <div class="countdown reveal" id="countdown" aria-live="off">
+        <div class="tile"><b id="cdD">--</b><span>Days</span></div>
+        <div class="tile"><b id="cdH">--</b><span>Hours</span></div>
+        <div class="tile"><b id="cdM">--</b><span>Minutes</span></div>
+        <div class="tile"><b id="cdS">--</b><span>Seconds</span></div>
+      </div>
+      <p class="cd-done" id="cdDone" hidden>Alhamdulillah. Thank you for celebrating with us.</p>
+      <div class="btn-row reveal">
+        <a class="btn ivory" id="gcal" target="_blank" rel="noopener">Add to Google Calendar</a>
+        <a class="btn ghost-ivory" id="ics" download="Farheen-Ashfaq-wedding.ics">Apple or Outlook</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- the venue -->
+  <section class="row row-venue" id="venue">
+    <div class="col col-venue-text reveal">
+      <span class="sprig sage" aria-hidden="true"></span>
+      <h2>The venue</h2>
+      <p class="caps sm">The Grand Ballroom</p>
+      <p class="caps xl">Marino Beach Hotel</p>
+      <p class="caps sm">Colombo</p>
+      <p class="body">Dinner is served at 8:00 pm. The hotel is on Marine Drive, Colombo 3, facing the sea.</p>
+      <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Marino+Beach+Hotel+Colombo" target="_blank" rel="noopener">Get directions</a>
+    </div>
+    <div class="col col-map reveal">
+      <div class="arch arch-map">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of Marino Beach Hotel, Colombo"
+          src="https://maps.google.com/maps?q=Marino%20Beach%20Hotel%20Colombo&amp;z=15&amp;output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- the dua -->
+  <section class="dua reveal">
+    <p class="arabic" lang="ar" dir="rtl">بَارَكَ ٱللَّٰهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+    <p class="it">Barakallahu lakuma wa baraka 'alaykuma wa jama'a baynakuma fi khayr</p>
+    <p class="body">May Allah bless you both, shower His blessings upon you, and unite you in goodness.</p>
+  </section>
+
+  <!-- the reply -->
+  <section class="row row-rsvp" id="rsvp">
+    <div class="col col-rsvp-text reveal">
+      <h2>Will you join us?</h2>
+      <p class="body">Your presence, duas and blessings would make our day complete. Send your reply and it reaches the family on WhatsApp.</p>
+    </div>
+    <div class="col col-form reveal">
+      <form id="rsvpForm" novalidate>
+        <label class="field">Your name
+          <input id="rName" name="name" required maxlength="80" autocomplete="name">
+        </label>
+        <fieldset class="choice">
+          <legend>Will you attend?</legend>
+          <label><input type="radio" name="att" value="yes" checked><span>Joyfully accepts</span></label>
+          <label><input type="radio" name="att" value="no"><span>Regretfully declines</span></label>
+        </fieldset>
+        <div class="count" id="countWrap">
+          <span>Number of guests</span>
+          <div class="stepper">
+            <button type="button" id="minus" aria-label="Fewer guests">−</button>
+            <output id="guests">1</output>
+            <button type="button" id="plus" aria-label="More guests">+</button>
+          </div>
+        </div>
+        <label class="field">A message or dua for the couple <span class="opt">(optional)</span>
+          <textarea id="rMsg" rows="3" maxlength="400"></textarea>
+        </label>
+        <p class="form-err" id="formErr" hidden>Please write your name.</p>
+        <button class="btn wa" type="submit">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>
+          Send my reply on WhatsApp
+        </button>
+        <a class="call" href="tel:+94776613293">or call 077 661 3293</a>
+      </form>
+    </div>
+    <div class="col col-keep reveal">
+      <a class="text-btn" href="assets/Farheen_Ashfaq_invitation.jpg" download>Save the invitation as a photo</a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <img class="foot-seal" src="assets/seal.webp" alt="" width="640" height="640" loading="lazy">
+    <p class="foot-names">Farheen &amp; Ashfaq</p>
+    <p class="foot-date">27 . 11 . 2026</p>
+    <p class="foot-rsvp">R.S.V.P<br>No. 106/4E, Waidya Road, Dehiwala<br>077 661 3293</p>
+  </footer>
+</main>
+
+<nav class="dock" id="dock" aria-label="Sections">
+  <a href="#card"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></svg><span>Invite</span></a>
+  <a href="#date"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span>Date</span></a>
+  <a href="#venue"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><span>Venue</span></a>
+  <a href="#rsvp"><svg viewBox="0 0 24 24"><path d="M4 6.5h16v11H4z"/><path d="M4 7l8 6 8-6"/></svg><span>Reply</span></a>
+</nav>
+
+<div class="lightbox" id="lightbox" hidden>
+  <img src="assets/card.webp" alt="The full invitation card">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">×</button>
+</div>
+
+<script src="app.js?v=4"></script>
+</body>
+</html>
