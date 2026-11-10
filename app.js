@@ -202,6 +202,43 @@
   }
   addEventListener('scroll', () => { if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(onScroll); } }, { passive: true });
 
+  /* ---------- the nasheed: starts with the guest's tap, loops softly, one button turns it off ---------- */
+  const NASHEED = 'assets/nasheed.mp3', NASHEED_VOL = .6;
+  const soundBtn = $('#sound');
+  let song = null, wantSong = true, fadeId = 0;
+  function fadeSong(to, ms) {
+    cancelAnimationFrame(fadeId);
+    const from = song.volume, t0 = performance.now();
+    const step = t => {
+      const k = clamp((t - t0) / ms, 0, 1);
+      song.volume = from + (to - from) * k;
+      if (k < 1) fadeId = requestAnimationFrame(step);
+      else if (to === 0) song.pause();
+    };
+    fadeId = requestAnimationFrame(step);
+  }
+  function showSound() {
+    soundBtn.setAttribute('aria-pressed', String(wantSong));
+    soundBtn.setAttribute('aria-label', wantSong ? 'Turn the nasheed off' : 'Turn the nasheed on');
+  }
+  function playSong() {                      // must be called from a tap or click, or the browser refuses
+    if (!wantSong) return;
+    if (!song) { song = new Audio(NASHEED); song.loop = true; song.preload = 'auto'; song.volume = 0; }
+    const p = song.play();
+    if (p && p.then) p.then(() => fadeSong(NASHEED_VOL, 2600)).catch(() => {});
+  }
+  soundBtn.addEventListener('click', () => {
+    if (wantSong && (!song || song.paused)) return playSong();   // it never got going: this tap starts it
+    wantSong = !wantSong;
+    showSound();
+    if (wantSong) playSong(); else fadeSong(0, 500);
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (!song) return;
+    if (document.hidden) { cancelAnimationFrame(fadeId); song.pause(); }
+    else if (wantSong && revealed) { song.volume = NASHEED_VOL; song.play().catch(() => {}); }
+  });
+
   /* ---------- the envelope: load the film, wait for the tap, play, reveal ---------- */
   const gate = $('#gate'), film = $('#film'), sealHit = $('#sealHit'), skipBtn = $('#skip');
   let started = false, revealed = false, blobUrl = null, filmReady = false;
@@ -213,6 +250,7 @@
     document.body.classList.remove('locked');
     document.body.classList.add('ready');
     $('#page').removeAttribute('aria-hidden');
+    soundBtn.hidden = false;
     startPetals();
     onScroll();
     const drop = () => { gate.remove(); if (blobUrl) URL.revokeObjectURL(blobUrl); };
@@ -261,6 +299,7 @@
   function open() {
     if (started) return;
     started = true;
+    playSong();
     if (!filmReady || reduced) { paperSound(0, .8, .12); return reveal(); }
     gate.classList.add('playing');
     crackSound(1.45);
@@ -276,7 +315,7 @@
     requestAnimationFrame(watch);
   }
   sealHit.addEventListener('click', open);
-  skipBtn.addEventListener('click', () => { if (!started) { started = true; reveal(); } });
+  skipBtn.addEventListener('click', () => { if (!started) { started = true; playSong(); reveal(); } });
 
   /* ---------- countdown ---------- */
   const pad = n => String(n).padStart(2, '0');
@@ -364,6 +403,9 @@
   /* ---------- start: load the film ---------- */
   let opened = false;                       // the envelope shows on every visit; only ?open=1 skips it
   try { opened = new URLSearchParams(location.search).get('open') === '1'; } catch (e) {}
-  if (opened) { started = true; reveal(true); }
+  if (opened) {                              // no tap yet, so the nasheed waits for the first touch
+    started = true; reveal(true);
+    addEventListener('pointerdown', e => { if (!song && !soundBtn.contains(e.target)) playSong(); }, { once: true });
+  }
   else loadFilm();
 })();

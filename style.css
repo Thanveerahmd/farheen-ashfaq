@@ -403,3 +403,15 @@ body.scrolled:not(.locked) .dock { transform: translate(-50%, 0); }
 @media (min-width: 900px) { .g-label { max-width: 320px; padding: 15px 24px 12px; } .g-label .plate-name { font-size: 22px; } }
 
 .col-words { display: grid; justify-items: center; gap: 22px; }
+
+/* ---------- nasheed on / off ---------- */
+.sound { position: fixed; top: max(14px, env(safe-area-inset-top)); right: 14px; z-index: 40; width: 44px; height: 44px; padding: 0; display: grid; place-items: center; border: 1px solid rgba(176, 138, 71, .55); border-radius: 50%; background: rgba(255, 253, 248, .86); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: var(--gold-deep); cursor: pointer; box-shadow: 0 4px 14px rgba(90, 70, 30, .16); animation: fade .9s ease both; }
+.sound[hidden] { display: none; }
+.sound svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sound .cross { display: none; }
+.sound[aria-pressed="false"] { color: var(--ink-soft); }
+.sound[aria-pressed="false"] .wave { display: none; }
+.sound[aria-pressed="false"] .cross { display: block; }
+.sound[aria-pressed="true"] .wave { animation: hum 2.4s ease-in-out infinite; }
+@keyframes hum { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .sound, .sound[aria-pressed="true"] .wave { animation: none; } }
