@@ -3,7 +3,7 @@
   'use strict';
 
   const WEDDING_UTC = Date.UTC(2026, 10, 27, 14, 30);          // Fri 27 Nov 2026, 8:00 pm Colombo (UTC+5:30)
-  const RSVP_PHONE = '94776613293';
+  const RSVP_PHONE = '94776876069';
   const VENUE = 'The Grand Ballroom, Marino Beach Hotel, Colombo';
   const FILM = 'assets/opening.mp4';
   const FILM_BYTES = 3400000;                                   // used only if the server sends no length
@@ -338,7 +338,7 @@
 
   /* ---------- calendar ---------- */
   const title = 'Wedding of Farheen & Ashfaq';
-  const details = 'Dinner at 8:00 pm, In shaa Allah. R.S.V.P 077 661 3293.';
+  const details = 'Dinner at 8:00 pm, In shaa Allah. R.S.V.P 077 687 6069.';
   $('#gcal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
     + '&text=' + encodeURIComponent(title)
     + '&dates=20261127T143000Z/20261127T173000Z'
